@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id ="app">
+    <h3>{{title}}</h3>
+    <button>{{buton}}</button>
+    <p>{{paragraph}}</p>
+    <a v-bind:href="link" v-bind:data-Id="dataId">website</a>
+    <p v-html="details"></p>
+
+    </div>
+    <script>
+        new Vue ({
+            el: '#app',
+            data: {
+                title:'test başlığı',
+                buton:'tıkla gelsin',
+                paragraph:'sivis pacem parabellum',
+                link:'https:\\www.konyakrom.com',
+                dataId:1,
+                details:"<b> bu yeni bir haber..</b>"
+            }
+        })
+    </script>
+</body>
+</html>
