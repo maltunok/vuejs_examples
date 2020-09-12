@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed Properties</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+    <input type="text" v-model="age">
+    <button v-on:click=age++>Increase Age</button>
+    <button v-on:click=age-->Decrease Age</button>
+    <p>JavaScript:{{age>=18? 'eligable' : 'not eligable'}}</p> 
+    <p>Method:{{ageWriter()}}</p>
+    <p>Computed:{{ageWriterComp}}</p>
+    <hr>
+    <input type="text" v-model="number">
+    <p>{{number}}</p>
+    <button v-on:click=number++>Increase Numbersss</button>
+    <button v-on:click=number-->Decrease Numbersss</button>  
+ </div>
+    <script>
+        new Vue({
+            el:'#app',  
+            data:{  
+                age:0,
+                number:0
+            },
+            methods:{
+                 ageWriter(){
+                    console.log("method") 
+                     return this.age >=18? 'eligable':'not eligable'        
+                 }
+            },
+            computed:{
+                ageWriterComp(){
+                    console.log("computed")
+                    return this.age>=18? 'eligable':'non eligable'  
+                }
+            },
+            watch:{
+                age(newValue,oldValue){
+                    console.log("New:" + newValue)
+                    console.log("OLd:" + oldValue)
+                }
+            }
+        })
+     
+    </script>
+</body>
+</html>
