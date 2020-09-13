@@ -3,47 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computed Properties</title>
+    <title>Class Dynamic Style</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #666;
+            background-color: rgb(235, 102, 14);
+            margin-bottom: 100px;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
 </head>
 <body>
  <div id="app">
-    <input type="text" v-model="age">
-    <button v-on:click=age++>Increase Age</button>
-    <button v-on:click=age-->Decrease Age</button>
-    <p>JavaScript:{{age>=18? 'eligable' : 'not eligable'}}</p> 
-    <p>Method:{{ageWriter()}}</p>
-    <p>Computed:{{ageWriterComp}}</p>
-    <hr>
-    <input type="text" v-model="number">
-    <p>{{number}}</p>
-    <button v-on:click=number++>Increase Numberssstttt</button>
-    <button v-on:click=number-->Decrease Numberssstttt</button>  
+
+     <div class="box" v-bind:class="className"></div>
+     <div class="box" v-bind:class="{'blue' : showBlue}"></div>
+     <button @click="showBlue =!showBlue">Ekle/Kaldır</button>
  </div>
     <script>
         new Vue({
-            el:'#app',  
-            data:{  
-                age:0,
-                number:0
-            },
-            methods:{
-                 ageWriter(){
-                    console.log("method") 
-                     return this.age >=18? 'eligable':'not eligable'        
-                 }
-            },
-            computed:{
-                ageWriterComp(){
-                    console.log("computed")
-                    return this.age>=18? 'eligable':'non eligable'  
-                }
-            },
-            watch:{
-                age(newValue,oldValue){
-                    console.log("New:" + newValue)
-                    console.log("OLd:" + oldValue)
-                }
+            el:'#app',
+            data:{
+               className:'blue',
+               showBlue:true
             }
         })
      
