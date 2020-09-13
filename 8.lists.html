@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Dynamic Style</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul{
+            margin:0px;
+            margin-top:10px;
+            padding: 0px;
+            list-style-type: none;
+            width: 300px;
+        }
+        li{
+            padding: 5px 5px;
+            margin-bottom:5px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
+  
+</head>
+<body>
+ <div id="app">
+   
+    <ul>
+         <li v-for="item in list">{{item}}</li>
+     </ul>
+     <hr>
+     <div v-for="(value,key) in personel">
+         <strong>{{key}}</strong><strong>:</strong><span>{{value}}</span>
+     </div>
+     <hr>
+      Count:<input type="text" v-model="sellCount">
+     
+         <ul>
+             <li v-for ="item in productList" :class="backgroundColor(item)">
+             <span>{{item.title}} - {{item.count}}</span>
+             <button :disabled="item.count<=0" :disabled="item.count<sellCount" @click="sellProduct(item)">Sold</button>
+            </li>
+            </ul>
+     <p v-if ="showWarning" style="color:red; font-weight:bold;">Purchase count is bigger than stock count</p>
+     
+ </div>
+<script>
+   new Vue({
+       el:'#app',
+       data:{
+           showWarning:false,
+           sellCount:0,
+         list:["elma", "armut", "kiraz"],
+         personel:{
+            name:"mustafa",
+            lastname:"altunok",
+            email:"m_altunok@hotmail.com"
+         },
+         productList:[
+             {
+                 title:'MacBook Pro',
+                 price:100,
+                 count:12
+             },
+             {
+                 title:'iPhone',
+                 price:150,
+                 count:100
+             },
+             {
+                 title:'keyboard',
+                 price:10,
+                 count:1000
+             }
+         ]
+         
+       },
+       methods:{
+           sellProduct(item){
+               if (this.sellCount>item.count) {
+                   this.showWarning=true
+               } else {
+                item.count=item.count-this.sellCount
+                this.showWarning=false
+               }
+               
+           },
+           backgroundColor(item) {
+            
+               return{ 'green':item.count>0, 'red':item.count<=0}
+                }
+           
+       }
+   })
+</script>
+</body>
+</html>

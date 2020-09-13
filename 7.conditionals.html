@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Dynamic Style</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
+</head>
+<body>
+ <div id="app">
+     <button @click="show=!show">Show/Hide</button>
+     <p v-if="show">show</p>
+     <p v-else="!show">hide</p>
+ </div>
+<script>
+   new Vue({
+       el:'#app',
+       data:{
+           show:true
+       }
+   })
+</script>
+</body>
+</html>
